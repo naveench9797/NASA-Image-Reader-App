@@ -18,6 +18,16 @@ builder.Services.RegisterServices();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHttpClient();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyHeader()
+                   .AllowAnyMethod();
+        });
+});
 var app = builder.Build();
 app.UseStaticFiles();
 app.UseStaticFiles(new StaticFileOptions()
@@ -32,6 +42,7 @@ app.UseStaticFiles(new StaticFileOptions()
                             Path.Combine(Directory.GetCurrentDirectory(), @"Content/NASA-Images")),
     RequestPath = new PathString("/app-content")
 });
+app.UseCors("AllowAllOrigins");
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

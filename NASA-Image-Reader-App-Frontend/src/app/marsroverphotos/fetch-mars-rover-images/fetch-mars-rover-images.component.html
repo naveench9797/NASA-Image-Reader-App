@@ -1,1 +1,33 @@
-<p>fetch-mars-rover-images works!</p>
+<div class="card">
+    <div class="card-header h3">
+        Mars Rover Images
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-3">
+                <label class="label">Select Date</label>
+                <input type="date" name="selectedDate" [(ngModel)]="dateSelected"
+                    class="form-control">
+            </div>
+            <div class="col-3 justify-content-bottom">
+                <button (click)="downLoadImages()" class="btn btn-primary mb-0">Fetch Images</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 h4">
+                Or
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label class="label">Select File with dates to fetch image Data</label>
+                <input type="file" (change)="onFileSelected($event)" class="form-control" />
+            </div>
+        </div>
+        <div class="row mt-5" *ngIf="result.length > 0">
+            <div class="col alert alert-success" role="alert">
+                <p [innerHTML]="result" class="h4"></p>
+            </div>
+        </div>
+    </div>
+</div>
