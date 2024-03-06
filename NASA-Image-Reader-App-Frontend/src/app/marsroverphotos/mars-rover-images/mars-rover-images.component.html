@@ -1,1 +1,27 @@
-<p>mars-rover-images works!</p>
+<div class="card">
+    <div class="card-header row">
+        <h3 class="col-6">Mars Rover Images</h3>
+        <div class="col-3">
+            <input type="date" name="selectedDate" [(ngModel)]="dateSelected"
+                class="form-control">
+        </div>
+        <div class="col-3">
+        <button (click)="fetchImages()" class="btn btn-primary">View Images</button></div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-3 p-5 text-center" *ngFor="let image of images">
+                <img [src]="imageBaseUrl + image" alt="Image" height="300px" width="300px">
+                <p>{{image}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer text-muted">
+        <div class="row d-flex justify-content-end">
+            <div class="col-12 d-flex justify-content-end">
+                <button (click)="prevPage()" class="btn btn-primary m-1" *ngIf="pageNumber > 1">Previous</button>
+                <button (click)="nextPage()" class="btn btn-primary m-1" *ngIf="pageNumber < lastPage">Next</button>
+            </div>
+        </div>
+    </div>
+</div>
